@@ -25,6 +25,7 @@
     "sqlite3": "^5.1.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
+    "tsyringe": "^4.8.0",
     "typeorm": "^0.3.17",
     "uuid": "^9.0.1"
   },
