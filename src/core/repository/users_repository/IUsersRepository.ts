@@ -13,9 +13,9 @@ export type PaginateParams = {
 }
 
 export type UsersPaginateProperties = {
-  perPage: number
+  per_page: number
   total: number
-  currentPage: number
+  current_page: number
   data: User[]
 }
 

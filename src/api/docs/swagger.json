@@ -10,7 +10,7 @@
     }
   },
   "paths": {
-    "/users": {
+    "/users/create": {
       "post": {
         "tags": ["User"],
         "summary": "Create a User",
@@ -23,6 +23,12 @@
                 "properties": {
                   "name": {
                     "type": "string"
+                  },
+                  "email":{
+                    "type":"string"
+                  },
+                  "password":{
+                    "type":"string"
                   }
                 }
               }

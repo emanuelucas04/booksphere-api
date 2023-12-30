@@ -7,12 +7,15 @@ import logger from 'src/utils/logger'
 import pinoHttp from 'pino-http'
 import swaggerUi from 'swagger-ui-express'
 import swaggerFile from '../docs/swagger.json'
+import { errors } from 'celebrate'
+import '@shared/container'
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 app.use(pinoHttp({ logger }))
+app.use(errors())
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(routes)
