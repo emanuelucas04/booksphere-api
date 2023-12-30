@@ -7,7 +7,8 @@
     "build": "rimraf dist && npx tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/api/app/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
   },
   "author": "elsa2@aluno.ifal.edu.br",
   "license": "ISC",
@@ -19,9 +20,12 @@
     "pino": "^8.17.2",
     "pino-http": "^9.0.0",
     "pino-pretty": "^10.3.1",
+    "reflect-metadata": "^0.2.1",
     "rimraf": "^5.0.5",
+    "sqlite3": "^5.1.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
+    "typeorm": "^0.3.17",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

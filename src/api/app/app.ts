@@ -1,15 +1,13 @@
-import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
-import { routes } from './routes'
-import { ApiError } from '@utils/errors/ApiError'
+import { routes } from '../router/routes'
+import { ApiError } from 'src/core/errors/ApiError'
 import logger from 'src/utils/logger'
 import pinoHttp from 'pino-http'
 import swaggerUi from 'swagger-ui-express'
-import swaggerFile from './swagger.json'
+import swaggerFile from '../docs/swagger.json'
 
-const port = Number(process.env.PORT)
 const app = express()
 
 app.use(express.json())
@@ -35,6 +33,4 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
   })
 })
 
-app.listen(port, () => {
-  logger.info(`Server is running on port ${port}!!`)
-})
+export { app }
