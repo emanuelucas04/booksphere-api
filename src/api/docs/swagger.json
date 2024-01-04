@@ -37,7 +37,43 @@
         },
         "responses": {
           "201": {
-            "description": "User created."
+            "description": "User created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id":{
+                      "type":"string"
+                    },
+                    "name":{
+                      "type":"string"
+                    },
+                    "email":{
+                      "type":"string"
+                    },
+                    "password":{
+                      "type":"string"
+                    },
+                    "created_at":{
+                      "type":"string"
+                    }
+                  },
+                  "example":{
+                    "id": "87a08fa9-d4f4-4331-ba07-b9aa4a345c88",
+                    "name": "John Doe",
+                    "email": "john@mail.com",
+                    "book": {
+                      "id": "144ec9e3-3fa7-4cec-9342-27afb909c555",
+                      "name": "Technology",
+                      "created_at": "2022-07-18T17:29:43.000Z"
+                    },
+                    "created_at": "2022-07-20T02:26:28.000Z",
+                    "avatar_url": null
+                  }
+                }
+              }
+            }
           },
           "400": {
             "description": "User already exists."
@@ -45,84 +81,170 @@
         }
       }
     },
-      "/users": {
-        "get":{
-          "tags":["Users"],
-          "summary": "List all users",
-          "description":"Returns all users paginated.",
-          "parameters":[
-            {
-              "name": "page",
-              "in": "query",
-              "description": "Number of the page",
-              "required": false,
-              "schema":{
-                "type":"number",
-                "example": "1"
-              },
-              "style": "label"
+    "/users": {
+      "get":{
+        "tags":["Users"],
+        "summary": "List all users",
+        "description":"Returns all users paginated.",
+        "parameters":[
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Number of the page",
+            "required": false,
+            "schema":{
+              "type":"number",
+              "example": "1"
             },
-            {
-              "name": "limit",
-              "in": "query",
-              "description": "Number of registers per page",
-              "required": false,
-              "schema":{
-                "type":"number",
-                "example": "15"
-              },
-              "style": "label"
-            }
-          ],
-          "responses":{
-            "200":{
-              "description": "Success.",
-              "content":{
-                "application/json":{
-                  "example":{
-                    "per_page": 15,
-                    "total": 2,
-                    "current_page": 1,
-                    "data": [
-                      {
-                        "id": "0e666847-769b-4bcb-8367-7a4c3bc91a05",
-                        "name": "User",
-                        "email": "user@mail.com",
-                        "avatar": "b4a3ded236ea94c7ebf2_avatar01.jpeg",
-                        "created_at": "2022-07-18T17:29:43.000Z",
-                        "book": {
-                          "id": "144ec9e3-3fa7-4cec-9342-27afb909c555",
-                          "name": "T.I.",
-                          "created_at": "2022-07-18T17:29:43.000Z"
-                        },
-                        "avatar_url": "http://localhost:3000/files/b4a3ded236ea94c7ebf2_avatar01.jpeg"
+            "style": "label"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of registers per page",
+            "required": false,
+            "schema":{
+              "type":"number",
+              "example": "15"
+            },
+            "style": "label"
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": "Success.",
+            "content":{
+              "application/json":{
+                "example":{
+                  "per_page": 15,
+                  "total": 2,
+                  "current_page": 1,
+                  "data": [
+                    {
+                      "id": "0e666847-769b-4bcb-8367-7a4c3bc91a05",
+                      "name": "User",
+                      "email": "user@mail.com",
+                      "avatar": "b4a3ded236ea94c7ebf2_avatar01.jpeg",
+                      "created_at": "2022-07-18T17:29:43.000Z",
+                      "book": {
+                        "id": "144ec9e3-3fa7-4cec-9342-27afb909c555",
+                        "name": "T.I.",
+                        "created_at": "2022-07-18T17:29:43.000Z"
                       },
-                      {
-                        "id": "87a08fa9-d4f4-4331-ba07-b9aa4a345c88",
-                        "name": "John Doe",
-                        "email": "john@mail.com",
-                        "avatar": null,
-                        "created_at": "2022-07-20T02:26:28.000Z",
-                        "book": {
-                          "id": "144ec9e3-3fa7-4cec-9342-27afb909c555",
-                          "name": "T.I.",
-                          "created_at": "2022-07-18T17:29:43.000Z"
-                        },
-                        "avatar_url": null
-                      }
-                    ]
-                  }
+                      "avatar_url": "http://localhost:3000/files/b4a3ded236ea94c7ebf2_avatar01.jpeg"
+                    },
+                    {
+                      "id": "87a08fa9-d4f4-4331-ba07-b9aa4a345c88",
+                      "name": "John Doe",
+                      "email": "john@mail.com",
+                      "avatar": null,
+                      "created_at": "2022-07-20T02:26:28.000Z",
+                      "book": {
+                        "id": "144ec9e3-3fa7-4cec-9342-27afb909c555",
+                        "name": "T.I.",
+                        "created_at": "2022-07-18T17:29:43.000Z"
+                      },
+                      "avatar_url": null
+                    }
+                  ]
                 }
               }
-            },
-            "400":{
-              "description": "Bad request."
-            },
-            "401":{
-              "description": "Invalid authentication token."
             }
+          },
+          "400":{
+            "description": "Bad request."
+          },
+          "401":{
+            "description": "Invalid authentication token."
           }
         }
       }
+    },
+
+    "/signin": {
+      "post": {
+        "tags": ["Resources"],
+        "summary": "User authenticate",
+        "description": "User authentication in the application",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "teste@gmail.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "avatar": {
+                          "type": "string"
+                        },
+                        "avatar_url": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "datetime"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "user": {
+                    "id": "3f33cb96-28ef-45f5-b6f4-dcadf80c72d0",
+                    "name": "Teste",
+                    "email": "teste@gmail.com",
+                    "avatar": "9fe542a6a59c65f08eac_avatar01.jpeg",
+                    "created_at": "2010-06-18T19:17:09.000Z",
+                    "avatar_url": "http://localhost:3000/files/9fe542a6a59c65f08eac_avatar01.jpeg"
+                  },
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTU2ODUzMzYsImV4cCI6MTY1NTc3MTczNiwic3ViIjoiM2YzM2NiOTYtMjhlZi00NWY1LWI2ZjQtZGNhZGY4MGM3MmQwIn0.OF3gjxJhOW4xa1i5Uhh_qRgo-SyllMRXroYO_ddFpQM"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "Incorrect email/password combination."
+          }
+        }
+      }
+    }
   }
 }

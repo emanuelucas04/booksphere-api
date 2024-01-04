@@ -1,4 +1,4 @@
-import { CreateSignInController } from 'src/api/controllers/users_controller/CreateSignInController'
+import { CreateSignInController } from 'src/api/controllers/resources_controller/CreateSignInController'
 import { CreateUserController } from 'src/api/controllers/users_controller/CreateUserController'
 import { ListUsersController } from 'src/api/controllers/users_controller/ListUsersController'
 import { IUsersRepository } from 'src/core/repository/users_repository/IUsersRepository'

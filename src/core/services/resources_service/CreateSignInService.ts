@@ -1,10 +1,10 @@
-import { ApiError } from '@shared/errors/ApiError'
-import { User } from '@users/User'
+import { inject, injectable } from 'tsyringe'
 import { compare } from 'bcryptjs'
 import jwtConfig from '@config/auth'
-import { sign } from 'jsonwebtoken'
+import { ApiError } from '@shared/errors/ApiError'
+import { User } from '@users/User'
 import { IUsersRepository } from 'src/core/repository/users_repository/IUsersRepository'
-import { inject, injectable } from 'tsyringe'
+import { sign } from 'jsonwebtoken'
 
 type CreateLoginDTO = {
   email: string

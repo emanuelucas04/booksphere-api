@@ -1,13 +1,14 @@
 import { instanceToInstance } from 'class-transformer'
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import { CreateSignInService } from 'src/core/services/users_service/CreateSignInService'
+import { CreateSignInService } from 'src/core/services/resources_service/CreateSignInService'
 
 export class CreateSignInController {
   async handler(request: Request, response: Response): Promise<Response> {
-    const createLoginService = container.resolve(CreateSignInService)
+    const createSignInService = container.resolve(CreateSignInService)
     const { email, password } = request.body
-    const { user, token } = await createLoginService.execute({
+
+    const { user, token } = await createSignInService.execute({
       email,
       password,
     })
