@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { CreateSignInController } from 'src/api/controllers/users_controller/CreateSignInController'
 import { CreateUserController } from 'src/api/controllers/users_controller/CreateUserController'
 import { ListUsersController } from 'src/api/controllers/users_controller/ListUsersController'
+import { isAuthenticated } from 'src/api/middlewares/IsAuthenticatedUser'
 import { container } from 'tsyringe'
 
 const usersRouter = Router()
@@ -13,6 +14,7 @@ const createSignInController = container.resolve(CreateSignInController)
 
 usersRouter.post(
   '/create',
+  isAuthenticated,
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -27,6 +29,7 @@ usersRouter.post(
 
 usersRouter.get(
   '/',
+  isAuthenticated,
   celebrate({
     [Segments.QUERY]: {
       page: Joi.number(),
