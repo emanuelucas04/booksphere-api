@@ -1,11 +1,13 @@
 import { Joi, Segments, celebrate } from 'celebrate'
 import { Router } from 'express'
 import { CreateUserController } from 'src/api/controllers/users_controller/CreateUserController'
+import { ListUsersController } from 'src/api/controllers/users_controller/ListUsersController'
 import { container } from 'tsyringe'
 
 const usersRouter = Router()
 
 const createUserController = container.resolve(CreateUserController)
+const listUsersController = container.resolve(ListUsersController)
 
 usersRouter.post(
   '/create',
@@ -18,6 +20,19 @@ usersRouter.post(
   }),
   (request, response) => {
     return createUserController.handler(request, response)
+  },
+)
+
+usersRouter.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      page: Joi.number(),
+      limit: Joi.number(),
+    },
+  }),
+  (request, response) => {
+    return listUsersController.handler(request, response)
   },
 )
 

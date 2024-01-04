@@ -22,4 +22,8 @@ export type UsersPaginateProperties = {
 export interface IUsersRepository {
   createUser({ name, email, password }: CreateUserDTO): Promise<User>
   deleteUser(user: User): Promise<void>
+  save(user: User): Promise<User>
+  findAll({ page, skip, take }): Promise<UsersPaginateProperties>
+  findById(id: string): Promise<User | null>
+  findByEmail(email: string): Promise<User | null>
 }
